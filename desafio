@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, tentativas = 3;
+    float alfa, mpe = 0.0, valor;
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &n);
+
+    do {
+        printf("Digite o valor de alfa (entre 0 e 1): ");
+        scanf("%f", &alfa);
+
+        if (alfa >= 0 && alfa <= 1) {
+            break; 
+        } else {
+            tentativas--;
+            printf("Valor invalido. Restam %d tentativas.\n", tentativas);
+        }
+
+    } while (tentativas > 0);
+
+    if (tentativas == 0) {
+        printf("Numero de tentativas esgotado. Encerrando o programa.\n");
+        return 1;
+    }
+
+    for (i = 0; i < n; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%f", &valor);
+
+        if (i == 0) {
+            mpe = valor;
+        } else {
+            mpe = alfa * valor + (1 - alfa) * mpe;
+        }
+    }
+
+    printf("A Media Ponderada Exponencial e: %.2f\n", mpe);
+
+    return 0;
+}
