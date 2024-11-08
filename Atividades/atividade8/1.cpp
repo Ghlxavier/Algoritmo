@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 
-typedef struct {
+struct Funcionario{
     char nome[50];
     float vendasMensais[3];
     float pontuacaoMensal[3]; 
     float pontuacaoTotal;
-} Funcionario;
+};
 
 int main() {
     Funcionario f[2];
@@ -22,7 +22,7 @@ int main() {
         for (j = 0; j < 3; j++) {
             printf("Digite as vendas do mes %d do funcionario %s: ", j + 1, f[i].nome);
             scanf("%f", &f[i].vendasMensais[j]);
-            f[i].pontuacaoMensal[j] = f[i].vendasMensais[j] / 1000.0; 
+            f[i].pontuacaoMensal[j] = f[i].vendasMensais[j] / 1000; 
             f[i].pontuacaoTotal += f[i].pontuacaoMensal[j];
             totalVendido += f[i].vendasMensais[j];
         }
