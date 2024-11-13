@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Programa 1: Comparar os endereços de duas variáveis e exibir o maior
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+
+    printf("Digite dois números inteiros:\n");
+    scanf("%d %d", &a, &b);
+
+    printf("Endereço de a: %p\n", (void*)pa);
+    printf("Endereço de b: %p\n", (void*)pb);
+
+    if (pa > pb) {
+        printf("O maior endereço é o de a: %p\n", (void*)pa);
+    } else {
+        printf("O maior endereço é o de b: %p\n", (void*)pb);
+    }
+
+    return 0;
+}
+
+// Programa 2: Solicitar dois números inteiros, armazená-los com ponteiros e retornar a soma
+void soma(int *x, int *y) {
+    int resultado = *x + *y;
+    printf("A soma dos números é: %d\n", resultado);
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+
+    printf("Digite dois números inteiros:\n");
+    scanf("%d %d", pa, pb);
+
+    soma(pa, pb);
+
+    return 0;
+}
+
+// Programa 3: Função que troca valores entre dois ponteiros
+void troca(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+
+    printf("Digite dois números inteiros:\n");
+    scanf("%d %d", pa, pb);
+
+    printf("Valores antes da troca: a = %d, b = %d\n", a, b);
+    troca(pa, pb);
+    printf("Valores depois da troca: a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+
+// Programa 4: Ler uma matriz 3x3 e imprimir o menor valor e seu endereço
+#define LINHAS 3
+#define COLUNAS 3
+
+void encontrarMenor(int matriz[LINHAS][COLUNAS]) {
+    int menor = matriz[0][0];
+    int *enderecoMenor = &matriz[0][0];
+
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            if (matriz[i][j] < menor) {
+                menor = matriz[i][j];
+                enderecoMenor = &matriz[i][j];
+            }
+        }
+    }
+
+    printf("O menor valor é: %d e está no endereço: %p\n", menor, (void*)enderecoMenor);
+}
+
+int main() {
+    int matriz[LINHAS][COLUNAS];
+
+    printf("Digite os elementos da matriz 3x3:\n");
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    encontrarMenor(matriz);
+
+    return 0;
+}
+
+// Programa 5: Soma e maior de dois números usando ponteiros
+void encontrarMaior(int *x, int *y) {
+    int maior = (*x > *y) ? *x : *y;
+    printf("O maior número é: %d\n", maior);
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+
+    printf("Digite dois números inteiros:\n");
+    scanf("%d %d", pa, pb);
+
+    soma(pa, pb);
+    encontrarMaior(pa, pb);
+
+    return 0;
+}
